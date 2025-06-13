@@ -11,7 +11,7 @@ export const theme = createTheme({
       main: "#86de08",
     },
     background: {
-      default: "#000",
+      default: "hsl(230, 13%, 9%)",
       paper: "#faf6ef",
     },
     text: {
@@ -33,6 +33,15 @@ export const theme = createTheme({
   shape: {
     borderRadius: 12,
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1636,
+    },
+  },
   components: {
     MuiTypography: {
       styleOverrides: {
@@ -46,6 +55,21 @@ export const theme = createTheme({
           color: "#000",
           fontSize: "3rem",
           fontWeight: 700,
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgb(134,239,172)",
+          color: "#000",
+          ":hover": {
+            backgroundColor: "rgb(34,197,94)",
+          },
+          fontWeight: 600,
+          padding: "0.25rem 0.75rem",
+          fontSize: "0.875rem",
+          borderRadius: "0.25rem",
         },
       },
     },

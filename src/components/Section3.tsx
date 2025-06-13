@@ -1,4 +1,10 @@
-import { Box, Container, useMediaQuery, type Theme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  useMediaQuery,
+  type Theme,
+} from "@mui/material";
 import { motion } from "framer-motion";
 
 const Section3 = () => {
@@ -62,18 +68,19 @@ const Section3 = () => {
               { text: "Dextools", href: "https://www.google.com" },
               { text: "Dexscreener", href: "https://www.google.com" },
             ].map((link, index) => (
-              <Box key={index}>
+              <Button
+                key={index}
+                sx={{
+                  width: { md: 500 },
+                  alignSelf: { md: "flex-start" },
+                }}
+              >
                 <motion.span
                   style={{
                     display: "inline-block",
                     color: "#000",
-                    fontSize: "3rem",
+                    fontSize: isMobile ? "2rem" : "3rem",
                     cursor: "pointer",
-                  }}
-                  whileHover={{
-                    scale: 1.05,
-                    x: 10,
-                    transition: { duration: 0.2 },
                   }}
                   onClick={() =>
                     window.open(link.href, "_blank", "noopener,noreferrer")
@@ -82,7 +89,7 @@ const Section3 = () => {
                 >
                   {link.text}
                 </motion.span>
-              </Box>
+              </Button>
             ))}
           </Box>
         </motion.div>

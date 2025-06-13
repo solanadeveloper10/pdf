@@ -1,5 +1,13 @@
-import { Box, Typography, useMediaQuery, type Theme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  useMediaQuery,
+  type Theme,
+} from "@mui/material";
 import { motion } from "framer-motion";
+import RandomBlock from "./RandomBlock";
+import Header from "./Header";
 
 const floatingImageVariants = {
   animate: {
@@ -18,80 +26,62 @@ const Section1 = () => {
   );
 
   return (
-    <Box
-      height='100%'
-      width='100%'
-      display='flex'
-      justifyContent='center'
-      alignItems='center'
-    >
-      <Box textAlign='center'>
-        <Typography variant='h1' mb={4}>
-          PDF
-        </Typography>
-        <Box
-          component={motion.div}
-          zIndex={-1}
-          variants={floatingImageVariants}
-          animate='animate'
-        >
-          <motion.img
-            src='/usd.png'
-            height={isMobile ? 150 : 250}
-            alt='pdf'
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{
-              opacity: 1,
-              scale: 1,
-              transition: { duration: 0.8 },
-            }}
-            viewport={{ once: true }}
-          />
-        </Box>
+    <Box height='100%' width='100%'>
+      <Header />
+      <Box
+        height='100%'
+        width='100%'
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+      >
+        <Box textAlign='center'>
+          <RandomBlock />
 
-        <Box mt={6}>
-          <motion.span
-            style={{
-              display: "inline-block",
-              color: "#000",
-              fontSize: "3rem",
-              cursor: "pointer",
-            }}
-            whileHover={{
-              scale: 1.05,
-              x: 10,
-              transition: { duration: 0.2 },
-            }}
-            onClick={() => window.open("", "_blank", "noopener,noreferrer")}
+          <Box
+            component={motion.div}
+            zIndex={-1}
+            variants={floatingImageVariants}
+            animate='animate'
           >
-            Buy
-          </motion.span>
+            <motion.img
+              src='/usd.png'
+              height={isMobile ? 150 : 250}
+              alt='pdf'
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                transition: { duration: 0.8 },
+              }}
+              viewport={{ once: true }}
+            />
+          </Box>
+
+          <Box mt={6}>
+            <Button>Create coin</Button>
+          </Box>
+
+          <Box
+            bgcolor='rgb(55,65,81)'
+            mt={4}
+            display='flex'
+            justifyContent='space-between'
+            alignItems='center'
+            sx={{
+              padding: "0.25rem 0.5rem",
+              borderRadius: "0.5rem",
+            }}
+            gap={3}
+            fontSize={{ xs: 10, md: 20 }}
+          >
+            <Box>qwe</Box>
+            <Typography variant='body1' fontSize='inherit'>
+              CA: 8SQQ1urC3Dynq9C2ieM6AozWgi4GCrLE6fnRoiWdpump
+            </Typography>
+            <Box>qwe</Box>
+          </Box>
         </Box>
-
-        <Typography
-          variant='body1'
-          fontSize={{ xs: 14, md: 20, wordBreak: "break-word" }}
-          mt={4}
-          sx={{ cursor: "pointer" }}
-          onClick={(e) => {
-            window.navigator.clipboard.writeText("contract address");
-            const target = e.currentTarget;
-            target.style.transform = "scale(0.6)";
-            target.style.transition = "transform 0.3s ease-in";
-
-            setTimeout(() => {
-              target.style.transform = "scale(1.25)";
-              target.style.transition = "transform 0.3s ease-out";
-
-              setTimeout(() => {
-                target.style.transform = "scale(1)";
-                target.style.transition = "transform 0.3s ease-out";
-              }, 300);
-            }, 300);
-          }}
-        >
-          ca: 8SQQ1urC3Dynq9C2ieM6AozWgi4GCrLE6fnRoiWdpump
-        </Typography>
       </Box>
     </Box>
   );
