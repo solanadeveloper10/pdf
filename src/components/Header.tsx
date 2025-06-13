@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import ConnectWallet from "./ConnectWallet";
 
 const Header = () => {
   return (
@@ -11,10 +12,17 @@ const Header = () => {
     >
       <Box display='flex' alignItems='center' gap={1}>
         <Box component='img' src='/usd.png' height={50} />
-        <Typography variant='h6' color='#fff' fontWeight='bold'>
+
+        <Typography
+          variant='h6'
+          color='#fff'
+          fontWeight='bold'
+          sx={{ display: { xs: "none", md: "block" } }}
+        >
           pump dollar fun
         </Typography>
       </Box>
+      <ConnectWallet />
     </Box>
   );
 };

@@ -1,7 +1,7 @@
 export const HEADER_HEIGHT = 80;
 export const comments = [
   {
-    message: "some random comment",
+    message: "I'll buy",
     date: "21.06.2025, 13:23:49",
     wallet: "2xgjPB",
     color: "rgb(0, 0 ,0 )",

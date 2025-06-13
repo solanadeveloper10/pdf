@@ -2,8 +2,40 @@ import { Box, Grid, Link, Typography } from "@mui/material";
 import Chart from "./Chart";
 import { comments } from "../constants";
 import Comment from "./Comment";
+import { useEffect, useState } from "react";
+import { formatWalletAddress } from "../helpers/formatWalletAddress";
+import BubbleMap from "./BubbleMap";
 
 const Section5 = () => {
+  const [holders, setHolders] = useState([]);
+
+  useEffect(() => {
+    const TOKEN_MINT = "BvLVj2kPd1nbHN4CQqZdfUtYCvS6x8kSaSNLYEBWpump";
+
+    const getTokenLargestAccounts = async (mintAddress: string) => {
+      const response = await fetch(
+        "https://mainnet.helius-rpc.com/?api-key=4aba5ba9-8ebc-41d6-9354-b2e7dea4fedd",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            jsonrpc: "2.0",
+            id: "1",
+            method: "getTokenLargestAccounts",
+            params: [mintAddress],
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      setHolders(data.result.value);
+      return data;
+    };
+
+    getTokenLargestAccounts(TOKEN_MINT);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -22,7 +54,9 @@ const Section5 = () => {
           </Box>
 
           {comments.map((comment) => (
-            <Comment {...comment} />
+            <Box mb={0.5}>
+              <Comment {...comment} />
+            </Box>
           ))}
         </Grid>
         <Grid size={{ xs: 12, md: 4, xl: 2 }} py={2}>
@@ -42,7 +76,7 @@ const Section5 = () => {
             mt={2}
             mb={1}
           >
-            bonding curve progress: 65%
+            bonding curve progress: 100%
           </Typography>
           <Box
             overflow='hidden'
@@ -52,13 +86,20 @@ const Section5 = () => {
             borderRadius={2}
             mb={3}
           >
-            <Box bgcolor='rgb(134,239,172)' height={30} width='65%'></Box>
+            <Box bgcolor='rgb(134,239,172)' height={30} width='100%'></Box>
           </Box>
 
           <Link
+            onClick={() => {
+              window.navigator.clipboard.writeText(
+                "BvLVj2kPd1nbHN4CQqZdfUtYCvS6x8kSaSNLYEBWpump"
+              );
+            }}
             sx={{
               width: "100%",
-              display: "block",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               textAlign: "center",
               color: "rgb(156,163,175)",
               fontSize: "0.875rem",
@@ -73,7 +114,13 @@ const Section5 = () => {
             }}
             bgcolor='rgb(55,65,81)'
           >
-            contract address: ...
+            contract address:
+            <Typography ml={1} fontWeight='400' fontSize={12}>
+              {formatWalletAddress(
+                "BvLVj2kPd1nbHN4CQqZdfUtYCvS6x8kSaSNLYEBWpump"
+              )}
+              ...pump
+            </Typography>
           </Link>
           <Link
             sx={{
@@ -127,36 +174,17 @@ const Section5 = () => {
                 top holders
               </Typography>
               <Box>
-                <Link
-                  sx={{
-                    width: "100%",
-                    display: "block",
-                    textAlign: "center",
-                    color: "rgb(156,163,175)",
-                    fontSize: "0.875rem",
-                    borderRadius: 0.5,
-                    py: 0.2,
-                    px: 1,
-                    transition: "0.3s",
-                    ":hover": {
-                      cursor: "pointer",
-                      bgcolor: "rgb(75,85,99)",
-                    },
-                  }}
-                  bgcolor='rgb(55,65,81)'
-                >
-                  generate bubblemap
-                </Link>
+                <BubbleMap />
               </Box>
             </Box>
             <Box mt={1}>
-              {[1, 2, 3, 5, 6, 7, 8, 9, 10].map((i) => (
+              {holders.map((holder, i) => (
                 <Box display='flex' justifyContent='space-between'>
                   <Typography fontSize='0.875rem' color='rgb(156,163,175)'>
-                    {i}. yeruqe
+                    {i + 1}. {formatWalletAddress((holder as any).address)}
                   </Typography>
                   <Typography fontSize='0.875rem' color='rgb(156,163,175)'>
-                    20%
+                    {(+(holder as any).uiAmount / 10000000).toFixed(2)}%
                   </Typography>
                 </Box>
               ))}

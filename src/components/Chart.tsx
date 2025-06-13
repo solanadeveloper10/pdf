@@ -17,7 +17,7 @@ const PriceChartWidget = () => {
         win.createMyWidget("price-chart-widget-container", {
           autoSize: true,
           chainId: "solana",
-          tokenAddress: "AZhiP3rYWJ1wLHgfCoupxGoPMsRN3t7zfFXapzQcpump",
+          tokenAddress: "BvLVj2kPd1nbHN4CQqZdfUtYCvS6x8kSaSNLYEBWpump",
           showHoldersChart: false,
           defaultInterval: "1",
           timeZone:

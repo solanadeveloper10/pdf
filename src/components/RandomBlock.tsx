@@ -12,13 +12,26 @@ const colors = [
 ];
 
 const texts = [
+  "Hey!",
+  "Hi there!",
   "Hello!",
-  "Welcome!",
-  "Changing...",
-  "Colors!",
-  "React + MUI",
-  "Fast!",
-  "Smooth!",
+  "Yo!",
+  "What’s up?",
+  "Sup?",
+  "Howdy!",
+  "Heyyy :)",
+  "Heya!",
+  "Hiya!",
+  "Greetings!",
+  "Yo yo yo!",
+  "'Ello mate!",
+  "Ayo!",
+  "Long time no see!",
+  "How’s it going?",
+  "Wassup!",
+  "What’s crackin’?",
+  "Look who it is!",
+  "Oi oi!",
 ];
 
 const RandomBlock = () => {
@@ -31,7 +44,7 @@ const RandomBlock = () => {
       const randomText = texts[Math.floor(Math.random() * texts.length)];
       setCurrentColor(randomColor);
       setCurrentText(randomText);
-    }, 110);
+    }, 200);
 
     return () => clearInterval(interval);
   }, []);
