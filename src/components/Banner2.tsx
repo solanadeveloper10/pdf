@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionMoney from "./SectionMoney";
 import Section3 from "./Section3";
 import Section1 from "./Section1";
-import Section5 from "./Section5";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,7 +50,7 @@ const ScrollAnimation = () => {
 
   return (
     <Box>
-      {[1, 2, 3, 4, 5, 6].map((num, index) => (
+      {[1, 2, 3, 4].map((num, index) => (
         <Box
           key={num}
           // @ts-ignore
@@ -63,7 +62,7 @@ const ScrollAnimation = () => {
             overflow: "hidden",
             transform: index % 2 !== 0 ? "translateY(100%)" : "none",
             willChange: index % 2 !== 0 ? "transform" : "auto",
-            bgcolor: index % 2 !== 0 ? "transparent" : "#fff",
+            bgcolor: index % 2 !== 0 ? "transparent" : "hsl(230, 13%, 9%)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -73,8 +72,6 @@ const ScrollAnimation = () => {
           {index === 1 && <SectionMoney />}
           {index === 2 && <Section3 />}
           {index === 3 && <SectionMoney />}
-          {index === 4 && <Section5 />}
-          {index === 5 && <SectionMoney />}
         </Box>
       ))}
     </Box>
